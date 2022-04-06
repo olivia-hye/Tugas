@@ -18,7 +18,7 @@ int main(int argc, char** argv){
 
 	while(1){
 		ClearScreen();
-		cout << "Selamat datang di Universitas BlockBerry" << endl << endl;
+		cout << "Selamat datang di Universitas Anak Bulan" << endl << endl;
 		cout << "Data statistik:" << endl;
 		cout << "  1. Jumlah Mahasiswa             : " << recMhs.size() << " Mahasiswa" << endl;
 		cout << "  2. Jumlah Dosen                 : " << recDosen.size() << " Dosen" << endl;
@@ -39,21 +39,23 @@ int main(int argc, char** argv){
 			case 1:{
 				ClearScreen();
 				cout << "MENU TAMBAH MAHASISWA" << endl;
+				cout << "---------------------" << endl;
 				++idM;
-				cout << "Nama Mahasiswa: ";
+				cout << "Nama: ";
 				getline(cin >> ws, nama);
-				cout << "Tanggal Lahir Mahasiswa" << endl;
+				cout << "Tanggal Lahir" << endl;
+				cout << "-------------" << endl;
 				cout << "Tanggal: ";
 				cin >> dd;
 				cout << "Bulan: ";
 				cin >> mm;
 				cout << "Tahun: ";
 				cin >> yy;
-				cout << "NRP Mahasiswa: ";
+				cout << "NRP: ";
 				cin >> nrp;
-				cout << "Departemen Mahasiswa: ";
+				cout << "Departemen: ";
 				getline(cin >> ws, departemen);
-				cout << "Tahun Masuk Mahasiswa: ";
+				cout << "Tahun Masuk: ";
 				cin >> tahunmasuk;
 				cout << endl;
 				mahasiswa mhs(idM, nama, dd, mm, yy, nrp, departemen, tahunmasuk);
@@ -64,6 +66,7 @@ int main(int argc, char** argv){
 			case 2:{
 				ClearScreen();
 				cout << "MENU TAMBAH DOSEN" << endl;
+				cout << "-----------------" << endl;
 				++idD;
 				cout << "Nama Dosen: ";
 				getline(cin >> ws, nama);
@@ -88,7 +91,8 @@ int main(int argc, char** argv){
 				break;
 			case 3:{
 				ClearScreen();
-				cout << "MENU TAMBAH DOSEN" << endl;
+				cout << "MENU TAMBAH TENDIK" << endl;
+				cout << "------------------" << endl;
 				++idT;
 				cout << "Nama Tendik: ";
 				getline(cin >> ws, nama);
@@ -123,18 +127,22 @@ int main(int argc, char** argv){
 			{
 				ClearScreen();
 				cout << "LIST MAHASISWA" << endl;
+				cout << "--------------" << endl;
 				for(int i=0; i<recMhs.size(); i++){
 					cout << "ID: " << recMhs[i].getId() << " | Nama: " << recMhs[i].getNama() << " | NRP: " << recMhs[i].getNRP() <<endl;
 				}
-				cout << "Masukan ID User: "; 
-				cin >> idUser;
 				cout << endl;
-				cout << "ID User: " << idUser << endl;
-				cout << "Nama Mahasiswa: " << recMhs[idUser-1].getNama() << endl;
-				cout << "Tanggal Lahir Mahasiswa: " << recMhs[idUser-1].getTglLahir() << "/" << recMhs[idUser-1].getBulanLahir() << "/" << recMhs[idUser-1].getTahunLahir() << endl;
-				cout << "NRP Mahasiswa: " << recMhs[idUser-1].getNRP() << endl;
-				cout << "Departemen Mahasiswa: " << recMhs[idUser-1].getDepartemen() << endl;
-				cout << "Tahun Masuk Mahasiswa: " << recMhs[idUser-1].getTahunMasuk() << endl << endl;
+				cout << "Masukan ID Mahasiswa: "; 
+				cin >> idUser;
+				ClearScreen();
+				cout << "DATA MAHASISWA " << idUser << endl;
+				cout << "----------------" << endl;
+				cout << "ID: " << idUser << endl;
+				cout << "Nama: " << recMhs[idUser-1].getNama() << endl;
+				cout << "Tanggal Lahir: " << recMhs[idUser-1].getTglLahir() << "/" << recMhs[idUser-1].getBulanLahir() << "/" << recMhs[idUser-1].getTahunLahir() << endl;
+				cout << "NRP: " << recMhs[idUser-1].getNRP() << endl;
+				cout << "Departemen: " << recMhs[idUser-1].getDepartemen() << endl;
+				cout << "Tahun Masuk: " << recMhs[idUser-1].getTahunMasuk() << endl;
 				cout << "Tekan Enter Untuk Kembali ke Menu Utama";
 				cin.ignore();		
 				cin.ignore();	
@@ -155,18 +163,22 @@ int main(int argc, char** argv){
 			{
 				ClearScreen();
 				cout << "LIST DOSEN" << endl;
+				cout << "----------" << endl;
 				for(int i=0; i<recDosen.size(); i++){
 					cout << "ID: " << recDosen[i].getId() << " | Nama: " << recDosen[i].getNama() << " | NPP: " << recDosen[i].getNPP()   <<endl;
 				}
-				cout << "Masukan ID User: "; 
-				cin >> idUser;
 				cout << endl;
-				cout << "ID User: " << idUser << endl;
-				cout << "Nama Dosen: " << recDosen[idUser-1].getNama() << endl;
-				cout << "Tanggal Lahir Dosen: " << recDosen[idUser-1].getTglLahir() << "/" << recDosen[idUser-1].getBulanLahir() << "/" << recDosen[idUser-1].getTahunLahir() << endl;
-				cout << "NPP Dosen: " << recDosen[idUser-1].getNPP() << endl;
-				cout << "Departemen Dosen: " << recDosen[idUser-1].getDepartemen() << endl;
-				cout << "Pendidikan Dosen: " << recDosen[idUser-1].getPendidikan() << endl << endl;
+				cout << "Masukan ID Dosen: "; 
+				cin >> idUser;
+				cout << "DATA DOSEN " << idUser << endl;
+				cout << "------------" << endl;
+				cout << endl;
+				cout << "ID: " << idUser << endl;
+				cout << "Nama: " << recDosen[idUser-1].getNama() << endl;
+				cout << "Tanggal Lahir: " << recDosen[idUser-1].getTglLahir() << "/" << recDosen[idUser-1].getBulanLahir() << "/" << recDosen[idUser-1].getTahunLahir() << endl;
+				cout << "NPP: " << recDosen[idUser-1].getNPP() << endl;
+				cout << "Departemen: " << recDosen[idUser-1].getDepartemen() << endl;
+				cout << "Pendidikan: " << recDosen[idUser-1].getPendidikan() << endl << endl;
 				cout << "Tekan Enter Untuk Kembali ke Menu Utama";
 				cin.ignore();		
 				cin.ignore();	
@@ -186,17 +198,22 @@ int main(int argc, char** argv){
 			{
 				ClearScreen();
 				cout << "LIST TENDIK" << endl;
+				cout << "-----------" << endl;
 				for(int i=0; i<recTendik.size(); i++){
 					cout << "ID: " << recTendik[i].getId() << " | Nama: " << recTendik[i].getNama() << " | NPP: " << recTendik[i].getNPP()   <<endl;
 				}
+				cout << endl;
 				cout << "Masukan ID User: "; 
 				cin >> idUser;
+				ClearScreen();
+				cout << "DATA TENDIK " << idUser << endl;
+				cout << "-------------" << endl;
 				cout << endl;
-				cout << "ID User: " << idUser << endl;
-				cout << "Nama Tendik: " << recTendik[idUser-1].getNama() << endl;
-				cout << "Tanggal Lahir Tendik: " << recTendik[idUser-1].getTglLahir() << "/" << recTendik[idUser-1].getBulanLahir() << "/" << recTendik[idUser-1].getTahunLahir() << endl;
-				cout << "NPP Tendik: " << recTendik[idUser-1].getNPP() << endl;
-				cout << "Unit Tendik: " << recTendik[idUser-1].getUnit() << endl << endl;
+				cout << "ID: " << idUser << endl;
+				cout << "Nama: " << recTendik[idUser-1].getNama() << endl;
+				cout << "Tanggal Lahir: " << recTendik[idUser-1].getTglLahir() << "/" << recTendik[idUser-1].getBulanLahir() << "/" << recTendik[idUser-1].getTahunLahir() << endl;
+				cout << "NPP: " << recTendik[idUser-1].getNPP() << endl;
+				cout << "Unit: " << recTendik[idUser-1].getUnit() << endl << endl;
 				cout << "Tekan Enter Untuk Kembali ke Menu Utama";
 				cin.ignore();		
 				cin.ignore();	
