@@ -12,7 +12,7 @@ int main(int argc, char** argv){
 	vector<mahasiswa> recMhs;
 	vector<dosen> recDosen;
 	vector<tendik> recTendik;
-	int menu_terpilih;
+	int menu_terpilih, menu_list;
 	int idM = 0, idD = 0, idT=0, dd, mm, yy, tahunmasuk, idUser;
 	string nama, nrp, npp, departemen, pendidikan, unit;
 
@@ -46,11 +46,11 @@ int main(int argc, char** argv){
 				cout << endl;
 				cout << "Tanggal Lahir" << endl;
 				cout << "-------------" << endl;
-				cout << "Tanggal: ";
+				cout << "Tanggal (dd): ";
 				cin >> dd;
-				cout << "Bulan: ";
+				cout << "Bulan (mm): ";
 				cin >> mm;
-				cout << "Tahun: ";
+				cout << "Tahun (yyyy): ";
 				cin >> yy;
 				cout << endl;
 				cout << "NRP: ";
@@ -75,11 +75,11 @@ int main(int argc, char** argv){
 				cout << endl;
 				cout << "Tanggal Lahir" << endl;
 				cout << "-------------" << endl;
-				cout << "Tanggal: ";
+				cout << "Tanggal (dd): ";
 				cin >> dd;
-				cout << "Bulan: ";
+				cout << "Bulan (mm): ";
 				cin >> mm;
-				cout << "Tahun: ";
+				cout << "Tahun (yyyy): ";
 				cin >> yy;
 				cout << endl;
 				cout << "NPP: ";
@@ -104,11 +104,11 @@ int main(int argc, char** argv){
 				cout << endl;
 				cout << "Tanggal Lahir" << endl;
 				cout << "-------------" << endl;
-				cout << "Tanggal: ";
+				cout << "Tanggal (dd): ";
 				cin >> dd;
-				cout << "Bulan: ";
+				cout << "Bulan (mm): ";
 				cin >> mm;
-				cout << "Tahun: ";
+				cout << "Tahun (yyyy): ";
 				cin >> yy;
 				cout << endl;
 				cout << "NPP Tendik: ";
@@ -151,9 +151,28 @@ int main(int argc, char** argv){
 				cout << "NRP: " << recMhs[idUser-1].getNRP() << endl;
 				cout << "Departemen: " << recMhs[idUser-1].getDepartemen() << endl;
 				cout << "Tahun Masuk: " << recMhs[idUser-1].getTahunMasuk() << endl << endl;
-				cout << "Tekan Enter Untuk Kembali ke Menu Utama";
+				/*cout << "Tekan Enter Untuk Kembali ke Menu Utama";
 				cin.ignore();		
-				cin.ignore();	
+				cin.ignore();
+				*/	
+				cout << "Menu: " << endl;
+				cout << "  1. Edit Data" << endl;
+				cout << "  2. Hapus Data" << endl;
+				cout << "  3. Kembali ke Menu Utama" << endl;
+				cout << "-> Silahkan memilih salah satu: ";
+				cin >> menu_list;
+				cout << endl;
+				switch (menu_list){
+					case 1:{
+					}	break;
+					case 2:{
+							recMhs.erase(recMhs.begin()+idUser-1);
+					}	break;
+					case 3:{
+						return 0;
+					}	break;
+				}
+
 			}
 				break;
 			case 5:/*{
@@ -233,6 +252,5 @@ int main(int argc, char** argv){
 				break;
 		}
 	}
-	
 	return 0;
 }
