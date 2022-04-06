@@ -13,7 +13,7 @@ int main(int argc, char** argv){
 	vector<dosen> recDosen;
 	vector<tendik> recTendik;
 	int menu_terpilih, menu_list;
-	int idM = 0, idD = 0, idT=0, dd, mm, yy, tahunmasuk, idUser;
+	int i, idM = 0, idD = 0, idT=0, dd, mm, yy, tahunmasuk, idUser;
 	string nama, nrp, npp, departemen, pendidikan, unit;
 
 	while(1){
@@ -136,7 +136,7 @@ int main(int argc, char** argv){
 				ClearScreen();
 				cout << "LIST MAHASISWA" << endl;
 				cout << "--------------" << endl;
-				for(int i=0; i<recMhs.size(); i++){
+				for(i=0; i<recMhs.size(); i++){
 					cout << "ID: " << recMhs[i].getId() << " | Nama: " << recMhs[i].getNama() << " | NRP: " << recMhs[i].getNRP() <<endl;
 				}
 				cout << endl;
@@ -167,9 +167,9 @@ int main(int argc, char** argv){
 					}	break;
 					case 2:{
 							recMhs.erase(recMhs.begin()+idUser-1);
+							recMhs.back().setId(idUser);
 					}	break;
 					case 3:{
-						return 0;
 					}	break;
 				}
 
@@ -207,10 +207,30 @@ int main(int argc, char** argv){
 				cout << "Departemen: " << recDosen[idUser-1].getDepartemen() << endl;
 				cout << "Pendidikan: " << recDosen[idUser-1].getPendidikan() << endl << endl;
 				cout << "Tekan Enter Untuk Kembali ke Menu Utama";
+				/*cout << "Tekan Enter Untuk Kembali ke Menu Utama";
 				cin.ignore();		
-				cin.ignore();	
-			}
+				cin.ignore();
+				*/	
+				cout << "Menu: " << endl;
+				cout << "  1. Edit Data" << endl;
+				cout << "  2. Hapus Data" << endl;
+				cout << "  3. Kembali ke Menu Utama" << endl;
+				cout << "-> Silahkan memilih salah satu: ";
+				cin >> menu_list;
+				cout << endl;
+				switch (menu_list){
+					case 1:{
+					}	break;
+					case 2:{
+							recDosen.erase(recDosen.begin()+idUser-1);
+							recDosen.back().setId(idUser);
+					}	break;
+					case 3:{
+						return 0;
+					}	break;
+				}
 				break;
+			}
 			case 6:/*{
 				cout << "LIST TENDIK" << endl;
 				for(int i=0; i<recTendik.size(); i++){
@@ -241,9 +261,24 @@ int main(int argc, char** argv){
 				cout << "Tanggal Lahir: " << recTendik[idUser-1].getTglLahir() << "/" << recTendik[idUser-1].getBulanLahir() << "/" << recTendik[idUser-1].getTahunLahir() << endl;
 				cout << "NPP: " << recTendik[idUser-1].getNPP() << endl;
 				cout << "Unit: " << recTendik[idUser-1].getUnit() << endl << endl;
-				cout << "Tekan Enter Untuk Kembali ke Menu Utama";
-				cin.ignore();		
-				cin.ignore();	
+				cout << "Menu: " << endl;
+				cout << "  1. Edit Data" << endl;
+				cout << "  2. Hapus Data" << endl;
+				cout << "  3. Kembali ke Menu Utama" << endl;
+				cout << "-> Silahkan memilih salah satu: ";
+				cin >> menu_list;
+				cout << endl;
+				switch (menu_list){
+					case 1:{
+					}	break;
+					case 2:{
+							recTendik.erase(recTendik.begin()+idUser-1);
+							recTendik.back().setId(idUser);
+					}	break;
+					case 3:{
+						return 0;
+					}	break;
+				}
 			}
 				break;
 			case 7:{
