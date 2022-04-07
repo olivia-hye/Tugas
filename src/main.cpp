@@ -6,14 +6,18 @@
 #include "include/dosen.hpp"
 #include "include/tendik.hpp"
 #include "include/clearscreen.hpp"
+
 using namespace std;
 
+vector<mahasiswa> recMhs;
+vector<dosen> recDosen;
+vector<tendik> recTendik;
+
+int menu_user=0, menu_terpilih, menu_list, menu_edit;
+int idM = 0, idD = 0, idT=0, idUser=0;
+
 int main(){
-	vector<mahasiswa> recMhs;
-	vector<dosen> recDosen;
-	vector<tendik> recTendik;
-	int menu_user=0, menu_terpilih, menu_list, menu_edit;
-	int idM = 0, idD = 0, idT=0, idUser, dd, mm, yy, tahunmasuk, semesterke, skslulus, semester;
+	int dd, mm, yy, tahunmasuk, semesterke, skslulus, semester;
 	float ips;
 	long unsigned i;
 	string date_time, nama, nrp, npp, departemen, pendidikan, unit, user;
@@ -627,7 +631,9 @@ int main(){
 			
 			break;
 		}
-			case 7:{ menu_user=0;
+			case 7:{ 
+				menu_user=0;
+				return main();
 			} break;
 			case 8:{
 				ClearScreen();
