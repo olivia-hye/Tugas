@@ -116,9 +116,9 @@ int main(int argc, char** argv){
 				cout << "Tahun (yyyy): ";
 				cin >> yy;
 				cout << endl;
-				cout << "NPP Tendik: ";
+				cout << "NPP: ";
 				cin >> npp;
-				cout << "Unit Tendik: ";
+				cout << "Unit: ";
 				getline(cin >> ws, unit);
 				cout << endl;
 				tendik tdk(idT, nama, dd, mm, yy, npp, unit);
@@ -139,6 +139,13 @@ int main(int argc, char** argv){
 			}*/
 			{
 				ClearScreen();
+				if(recMhs.size() == 0){
+					cout << "Belum ada data mahasiswa" << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();		
+					cin.ignore();
+					}
+				else {
 				cout << "LIST MAHASISWA" << endl;
 				cout << "--------------" << endl;
 				for(i=0; i<recMhs.size(); i++){
@@ -275,7 +282,7 @@ int main(int argc, char** argv){
 					case 3:{
 					}	break;
 				}
-
+				}
 			}
 				break;
 			case 5:/*{
@@ -292,6 +299,13 @@ int main(int argc, char** argv){
 			}*/
 			{
 				ClearScreen();
+				if(recDosen.size() == 0){
+					cout << "Belum ada data dosen" << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();		
+					cin.ignore();
+					}
+				else{
 				cout << "LIST DOSEN" << endl;
 				cout << "----------" << endl;
 				for(i=0; i<recDosen.size(); i++){
@@ -309,7 +323,6 @@ int main(int argc, char** argv){
 				cout << "NPP: " << recDosen[idUser-1].getNPP() << endl;
 				cout << "Departemen: " << recDosen[idUser-1].getDepartemen() << endl;
 				cout << "Pendidikan: " << recDosen[idUser-1].getPendidikan() << endl << endl;
-				cout << "Tekan Enter Untuk Kembali ke Menu Utama";
 				/*cout << "Tekan Enter Untuk Kembali ke Menu Utama";
 				cin.ignore();		
 				cin.ignore();
@@ -402,10 +415,10 @@ int main(int argc, char** argv){
 							recDosen.back().setId(idUser);
 					}	break;
 					case 3:{
-						return 0;
 					}	break;
+					}
 				}
-					break;
+				break;
 			}
 			case 6:/*{
 				cout << "LIST TENDIK" << endl;
@@ -420,6 +433,13 @@ int main(int argc, char** argv){
 			}*/
 			{
 				ClearScreen();
+				if(recTendik.size() == 0){
+					cout << "Belum ada data tendik" << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();		
+					cin.ignore();
+					}
+				else{
 				cout << "LIST TENDIK" << endl;
 				cout << "-----------" << endl;
 				for(i=0; i<recTendik.size(); i++){
@@ -513,11 +533,12 @@ int main(int argc, char** argv){
 							recTendik.back().setId(idUser);
 					}	break;
 					case 3:{
-						return 0;
 					}	break;
 				}
-			}
+				}
 				break;
+			}
+
 			case 7:{
 				return 0;
 			}
