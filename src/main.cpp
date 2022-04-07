@@ -8,17 +8,17 @@
 #include "include/clearscreen.hpp"
 using namespace std;
 
-int main(int argc, char** argv){
+int main(){
 	vector<mahasiswa> recMhs;
 	vector<dosen> recDosen;
 	vector<tendik> recTendik;
-	int menu_user, menu_terpilih, menu_list, menu_edit;
+	int menu_user=0, menu_terpilih, menu_list, menu_edit;
 	int idM = 0, idD = 0, idT=0, idUser, dd, mm, yy, tahunmasuk, semesterke, skslulus, semester;
 	float ips;
 	long unsigned i;
 	string date_time, nama, nrp, npp, departemen, pendidikan, unit, user;
 
-	START_MENU:
+	while(menu_user==0){
 	ClearScreen();
 	cout << "SIAKAD Universitas Anak Bulan" << endl;
 	cout << "-----------------------------" << endl;
@@ -45,10 +45,10 @@ int main(int argc, char** argv){
 		cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 		cin.ignore();		
 		cin.ignore();
-		goto START_MENU;
+		return main();
 		}
+	}
 	while(menu_user==1){
-		START_ADMIN:
 		ClearScreen();
 		cout << "Selamat datang di SIAKAD Universitas Anak Bulan" << endl << endl;
 		cout << "Data statistik:" << endl;
@@ -176,7 +176,6 @@ int main(int argc, char** argv){
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
-					goto START_ADMIN;
 					}
 				else {
 				cout << "LIST MAHASISWA" << endl;
@@ -188,14 +187,13 @@ int main(int argc, char** argv){
 				cout << "Masukan ID Mahasiswa: "; 
 				cin >> idUser;
 				ClearScreen();
-				if(idUser > recMhs.size()){
+				while(idUser > recMhs.size()){
 					cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
-					goto START_ADMIN;
+					return main();
 				}
-				else{
 				cout << "DATA MAHASISWA " << idUser << endl;
 				cout << "----------------" << endl;
 				cout << "ID Mahasiswa: " << idUser << endl;
@@ -234,7 +232,6 @@ int main(int argc, char** argv){
 						cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
 						cin.ignore();
 						cin.ignore();
-						goto START_ADMIN;
 					}	break;
 					case 2:{
 						for(i=1; i<=recMhs[idUser-1].getSemester(); i++){
@@ -249,7 +246,6 @@ int main(int argc, char** argv){
 						cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 						cin.ignore();		
 						cin.ignore();
-						goto START_ADMIN;
 					}	break;
 					case 3:{
 						ClearScreen();
@@ -275,8 +271,7 @@ int main(int argc, char** argv){
 							recMhs[idUser-1].setNama(nama);
 							cout << "Nama Telah Berhasil Diubah" << endl << endl;
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-							cin.ignore();	
-							goto START_ADMIN;	
+							cin.ignore();		
 							}
 							break;
 						case 2:{
@@ -293,7 +288,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 							}
 							break;
 						case 3:{
@@ -305,7 +299,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 						}
 							break;
 						case 4:{
@@ -315,8 +308,7 @@ int main(int argc, char** argv){
 							recMhs[idUser-1].setDepartemen(departemen);
 							cout << "Departemen Telah Berhasil Diubah" << endl << endl;
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-							cin.ignore();
-							goto START_ADMIN;	
+							cin.ignore();	
 						}
 							break;
 						case 5:{
@@ -328,7 +320,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 						}
 							break;
 						case 6:{
@@ -340,7 +331,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 						}
 							break;
 						case 7:{
@@ -352,7 +342,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 						}
 						}
 					}	break;
@@ -364,7 +353,6 @@ int main(int argc, char** argv){
 					}	break;
 					case 5:{
 					}	break;
-				}
 				}
 			}
 			break;
@@ -383,14 +371,13 @@ int main(int argc, char** argv){
 			}*/
 			{
 				ClearScreen();
-				if(recDosen.size() == 0){
+				while(recDosen.size() == 0){
 					cout << "Belum ada data dosen" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
-					goto START_ADMIN;
+					return main();
 					}
-				else{
 				cout << "LIST DOSEN" << endl;
 				cout << "----------" << endl;
 				for(i=0; i<recDosen.size(); i++){
@@ -400,14 +387,13 @@ int main(int argc, char** argv){
 				cout << "Masukan ID Dosen: "; 
 				cin >> idUser;
 				ClearScreen();
-				if(idUser > recDosen.size()){
+				while(idUser > recDosen.size()){
 					cout << "ID Dosen Tidak Ditemukan" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
-					goto START_ADMIN;
+					return main();
 				}
-				else{
 				cout << "DATA DOSEN " << idUser << endl;
 				cout << "------------" << endl;
 				cout << "ID Dosen: " << idUser << endl;
@@ -451,7 +437,6 @@ int main(int argc, char** argv){
 							cout << "Nama Telah Berhasil Diubah" << endl << endl;
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();
-							goto START_ADMIN;
 						
 							}
 							break;
@@ -469,7 +454,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 							}
 							break;
 						case 3:{
@@ -481,7 +465,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 						}
 							break;
 						case 4:{
@@ -492,7 +475,6 @@ int main(int argc, char** argv){
 							cout << "Departemen Telah Berhasil Diubah" << endl << endl;
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
-							goto START_ADMIN;
 						}
 							break;
 						case 5:{
@@ -504,7 +486,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 							}
 							break;
 						}
@@ -517,9 +498,7 @@ int main(int argc, char** argv){
 					}	break;
 					case 3:{
 					}	break;
-					}
 				}
-			}
 			break;
 		}
 			case 6:/*{
@@ -535,14 +514,13 @@ int main(int argc, char** argv){
 			}*/
 			{
 				ClearScreen();
-				if(recTendik.size() == 0){
+				while(recTendik.size() == 0){
 					cout << "Belum ada data tendik" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
-					goto START_ADMIN;
+					return main();
 					}
-				else{
 				cout << "LIST TENDIK" << endl;
 				cout << "-----------" << endl;
 				for(i=0; i<recTendik.size(); i++){
@@ -552,14 +530,13 @@ int main(int argc, char** argv){
 				cout << "Masukan ID User: "; 
 				cin >> idUser;
 				ClearScreen();
-				if(idUser > recTendik.size()){
+				while(idUser > recTendik.size()){
 					cout << "ID Tendik Tidak Ditemukan" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
-					goto START_ADMIN;
+					return main();
 				}
-				else{
 				cout << "DATA TENDIK " << idUser << endl;
 				cout << "-------------" << endl;
 				cout << "ID Tendik: " << idUser << endl;
@@ -596,8 +573,7 @@ int main(int argc, char** argv){
 							recTendik[idUser-1].setNama(nama);
 							cout << "Nama Telah Berhasil Diubah" << endl << endl;
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-							cin.ignore();
-							goto START_ADMIN;		
+							cin.ignore();	
 							}
 							break;
 						case 2:{
@@ -614,7 +590,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 							}
 							break;
 						case 3:{
@@ -626,7 +601,6 @@ int main(int argc, char** argv){
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();		
 							cin.ignore();
-							goto START_ADMIN;
 						}
 							break;
 						case 4:{
@@ -636,8 +610,7 @@ int main(int argc, char** argv){
 							recTendik[idUser-1].setUnit(unit);
 							cout << "Unit Telah Berhasil Diubah" << endl << endl;
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-							cin.ignore();
-							goto START_ADMIN;		
+							cin.ignore();	
 						}
 							break;
 						}
@@ -650,14 +623,12 @@ int main(int argc, char** argv){
 					}	break;
 					case 3:{
 					}	break;
-				}
-				}
 			}
+			
 			break;
 		}
-			case 7:{
-				goto START_MENU;
-			}
+			case 7:{ menu_user=0;
+			} break;
 			case 8:{
 				ClearScreen();
 				return 0;
@@ -666,23 +637,25 @@ int main(int argc, char** argv){
 		}
 	}
 	while(menu_user==2){
-		if(idM==0){
+		while(idM==0){
 			ClearScreen();
 			cout << "Database Mahasiswa Masih Kosong" << endl << endl;
 			cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
 			cin.ignore();
 			cin.ignore();
-			goto START_MENU;
-		}
+			menu_user=0;
+			return main();
+		} 
 		cout << "Masukkan ID Mahasiswa Anda: ";
 		cin >> idM;
-		if(idM > recMhs.size()){
+		while(idM > recMhs.size()){
 					cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
-					goto START_MENU;}
-		START_MAHASISWA:
+					menu_user=0;
+					return main();
+					}
 		ClearScreen();
 		cout << "Selamat datang di SIAKAD Universitas Anak Bulan, " << recMhs[idM-1].getNama();
 		cout << endl << endl;
@@ -720,10 +693,8 @@ int main(int argc, char** argv){
 						cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 						cin.ignore();		
 						cin.ignore();
-						goto START_MAHASISWA;
 			}	break;
 			case 2:{
-				goto START_MENU;
 			}	break;
 			case 3:{
 				ClearScreen();
@@ -732,24 +703,25 @@ int main(int argc, char** argv){
 		}
 	}
 	while(menu_user==3){
-		if(idD==0){
-		ClearScreen();
+		while(idD==0){
+			ClearScreen();
 			cout << "Database Dosen Masih Kosong" << endl << endl;
 			cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
 			cin.ignore();
 			cin.ignore();
-			goto START_MENU;
-		
-	}
+			menu_user=0;
+			return main();
+			} 
 		cout << "Masukkan ID Dosen Anda: ";
 		cin >> idD;
-		if(idD > recDosen.size()){
-					cout << "ID Dosen Tidak Ditemukan" << endl << endl;
-					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-					cin.ignore();		
-					cin.ignore();
-					goto START_MENU;}
-		START_DOSEN:
+		while(idD > recDosen.size()){
+			cout << "ID Dosen Tidak Ditemukan" << endl << endl;
+			cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+			cin.ignore();		
+			cin.ignore();
+			menu_user=0;
+			return main();
+			} 
 		ClearScreen();
 		cout << "Selamat datang di SIAKAD Universitas Anak Bulan";
 		cout << endl << endl;
@@ -787,10 +759,8 @@ int main(int argc, char** argv){
 				cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
 				cin.ignore();
 				cin.ignore();
-				goto START_DOSEN;
 			} break;
 			case 2:{
-				goto START_MENU;
 			} break;
 			case 3:{
 				ClearScreen();
