@@ -17,7 +17,7 @@ int main(int argc, char** argv){
 	float ips;
 	long unsigned i;
 	string nama, nrp, npp, departemen, pendidikan, unit;
-
+	
 	while(1){
 		ClearScreen();
 		cout << "Selamat datang di Universitas Anak Bulan" << endl << endl;
