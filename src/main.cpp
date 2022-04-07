@@ -414,7 +414,9 @@ int main(int argc, char** argv){
 					}	break;
 					case 2:{
 							recDosen.erase(recDosen.begin()+idUser-1);
-							recDosen.back().setId(idUser);
+							if(recDosen.back().getId() != 1){recDosen.back().setId(idUser);}
+							else{recDosen.back().setId(idUser-1);}
+							idD--;
 					}	break;
 					case 3:{
 					}	break;
@@ -532,7 +534,9 @@ int main(int argc, char** argv){
 					}	break;
 					case 2:{
 							recTendik.erase(recTendik.begin()+idUser-1);
-							recTendik.back().setId(idUser);
+							if(recTendik.back().getId() != 1){recTendik.back().setId(idUser);}
+							else{recTendik.back().setId(idUser-1);}
+							idT--;
 					}	break;
 					case 3:{
 					}	break;
