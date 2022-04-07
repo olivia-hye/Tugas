@@ -13,7 +13,8 @@ int main(int argc, char** argv){
 	vector<dosen> recDosen;
 	vector<tendik> recTendik;
 	int menu_terpilih, menu_list, menu_edit;
-	int idM = 0, idD = 0, idT=0, dd, mm, yy, tahunmasuk, semesterke, skslulus, idUser;
+	int idM = 0, idD = 0, idT=0, dd, mm, yy, tahunmasuk, semesterke, skslulus, idUser, semester;
+	float ips;
 	long unsigned i;
 	string nama, nrp, npp, departemen, pendidikan, unit;
 
@@ -140,7 +141,7 @@ int main(int argc, char** argv){
 			{
 				ClearScreen();
 				if(recMhs.size() == 0){
-					cout << "Belum ada data mahasiswa" << endl;
+					cout << "Belum ada data mahasiswa" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
@@ -155,6 +156,13 @@ int main(int argc, char** argv){
 				cout << "Masukan ID Mahasiswa: "; 
 				cin >> idUser;
 				ClearScreen();
+				if(idUser > recMhs.size()){
+					cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();		
+					cin.ignore();
+				}
+				else{
 				cout << "DATA MAHASISWA " << idUser << endl;
 				cout << "----------------" << endl;
 				cout << "ID: " << idUser << endl;
@@ -170,14 +178,45 @@ int main(int argc, char** argv){
 				cin.ignore();
 				*/	
 				cout << "Menu: " << endl;
-				cout << "  1. Edit Data" << endl;
-				cout << "  2. Hapus Data" << endl;
-				cout << "  3. Kembali ke Menu Utama" << endl;
+				cout << "  1. Input IP Semester" << endl;
+				cout << "  2. Lihat IP Semester & IP Kumulatif" << endl;
+				cout << "  3. Edit Data" << endl;
+				cout << "  4. Hapus Data" << endl;
+				cout << "  5. Kembali ke Menu Utama" << endl;
 				cout << "-> Silahkan memilih salah satu: ";
 				cin >> menu_list;
 				cout << endl;
 				switch (menu_list){
 					case 1:{
+						ClearScreen();
+						cout << "MENU INPUT IP SEMESTER" << endl;
+						cout << "----------------------" << endl;
+						cout << "Input Semester Secara Berurutan" << endl;
+						for(i=1; i<=semesterke; i++){
+							cout << "Input IP Semester " << i << ": ";
+							semester = i;
+							cin >> ips;
+							recMhs[idUser-1].setIPS(semester, ips);
+						}
+						cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
+						cin.ignore();
+						cin.ignore();
+					}	break;
+					case 2:{
+						for(i=1; i<=recMhs[idUser-1].getSemester(); i++){
+						cout << "IP Semester " << i << ": " << recMhs[idUser-1].getIPS(i) << endl;
+						}
+						float ipk, temp;
+						for(i=1; i<=recMhs[idUser-1].getSemester();i++){
+						temp += recMhs[idUser-1].getIPS(i);
+						}
+						ipk = temp / (i-1);
+						cout << "IP Kumulatif: " << ipk << endl << endl;
+						cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+						cin.ignore();		
+						cin.ignore();
+					}	break;
+					case 3:{
 						ClearScreen();
 						cout << "MENU EDIT MAHASISWA" << endl;
 						cout << "-------------------" << endl;
@@ -275,18 +314,19 @@ int main(int argc, char** argv){
 						}
 						}
 					}	break;
-					case 2:{
+					case 4:{
 							recMhs.erase(recMhs.begin()+idUser-1);
 							if(recMhs.back().getId() != 1){recMhs.back().setId(idUser);}
 							else{recMhs.back().setId(idUser-1);}
 							idM--;
 					}	break;
-					case 3:{
+					case 5:{
 					}	break;
 				}
 				}
 			}
-				break;
+			break;
+			}
 			case 5:/*{
 				cout << "LIST DOSEN" << endl;
 				for(int i=0; i<recDosen.size(); i++){
@@ -302,7 +342,7 @@ int main(int argc, char** argv){
 			{
 				ClearScreen();
 				if(recDosen.size() == 0){
-					cout << "Belum ada data dosen" << endl;
+					cout << "Belum ada data dosen" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
@@ -316,6 +356,14 @@ int main(int argc, char** argv){
 				cout << endl;
 				cout << "Masukan ID Dosen: "; 
 				cin >> idUser;
+				ClearScreen();
+				if(idUser > recDosen.size()){
+					cout << "ID Dosen Tidak Ditemukan" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();		
+					cin.ignore();
+				}
+				else{
 				cout << "DATA DOSEN " << idUser << endl;
 				cout << "------------" << endl;
 				cout << endl;
@@ -422,8 +470,9 @@ int main(int argc, char** argv){
 					}	break;
 					}
 				}
-				break;
 			}
+			break;
+		}
 			case 6:/*{
 				cout << "LIST TENDIK" << endl;
 				for(int i=0; i<recTendik.size(); i++){
@@ -438,7 +487,7 @@ int main(int argc, char** argv){
 			{
 				ClearScreen();
 				if(recTendik.size() == 0){
-					cout << "Belum ada data tendik" << endl;
+					cout << "Belum ada data tendik" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();		
 					cin.ignore();
@@ -453,6 +502,13 @@ int main(int argc, char** argv){
 				cout << "Masukan ID User: "; 
 				cin >> idUser;
 				ClearScreen();
+				if(idUser > recTendik.size()){
+					cout << "ID Tendik Tidak Ditemukan" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();		
+					cin.ignore();
+				}
+				else{
 				cout << "DATA TENDIK " << idUser << endl;
 				cout << "-------------" << endl;
 				cout << endl;
@@ -542,10 +598,11 @@ int main(int argc, char** argv){
 					}	break;
 				}
 				}
-				break;
 			}
-
+			break;
+		}
 			case 7:{
+				ClearScreen();
 				return 0;
 			}
 				break;
