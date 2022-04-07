@@ -667,6 +667,7 @@ int main(int argc, char** argv){
 		}
 		cout << "Masukkan ID Mahasiswa Anda: ";
 		cin >> idM;
+		START_MAHASISWA:
 		ClearScreen();
 		cout << "Selamat datang di Universitas Anak Bulan, " << recMhs[idM-1].getNama();
 		cout << endl << endl;
@@ -701,6 +702,7 @@ int main(int argc, char** argv){
 						cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 						cin.ignore();		
 						cin.ignore();
+						goto START_MAHASISWA;
 					}	break;
 			case 2:{
 				goto START_MENU;
