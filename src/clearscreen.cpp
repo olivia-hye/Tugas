@@ -2,5 +2,5 @@
 #include "include/clearscreen.hpp"
 
 void ClearScreen(){
-    system("cls")&&system("clr");
+    system("cls")&&system("clear");
     }

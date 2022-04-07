@@ -206,12 +206,12 @@ int main(int argc, char** argv){
 						for(i=1; i<=recMhs[idUser-1].getSemester(); i++){
 						cout << "IP Semester " << i << ": " << recMhs[idUser-1].getIPS(i) << endl;
 						}
-						float ipk, temp;
+						float ipk=0, temp=0;
 						for(i=1; i<=recMhs[idUser-1].getSemester();i++){
 						temp += recMhs[idUser-1].getIPS(i);
 						}
 						ipk = temp / (i-1);
-						cout << "IP Kumulatif: " << ipk << endl << endl;
+						cout << endl << "IP Kumulatif: " << ipk << endl << endl;
 						cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 						cin.ignore();		
 						cin.ignore();
@@ -366,7 +366,6 @@ int main(int argc, char** argv){
 				else{
 				cout << "DATA DOSEN " << idUser << endl;
 				cout << "------------" << endl;
-				cout << endl;
 				cout << "ID: " << idUser << endl;
 				cout << "Nama: " << recDosen[idUser-1].getNama() << endl;
 				cout << "Tanggal Lahir: " << recDosen[idUser-1].getTglLahir() << "/" << recDosen[idUser-1].getBulanLahir() << "/" << recDosen[idUser-1].getTahunLahir() << endl;
@@ -511,7 +510,6 @@ int main(int argc, char** argv){
 				else{
 				cout << "DATA TENDIK " << idUser << endl;
 				cout << "-------------" << endl;
-				cout << endl;
 				cout << "ID: " << idUser << endl;
 				cout << "Nama: " << recTendik[idUser-1].getNama() << endl;
 				cout << "Tanggal Lahir: " << recTendik[idUser-1].getTglLahir() << "/" << recTendik[idUser-1].getBulanLahir() << "/" << recTendik[idUser-1].getTahunLahir() << endl;
