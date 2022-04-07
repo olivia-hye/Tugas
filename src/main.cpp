@@ -701,6 +701,8 @@ int main(){
 						cin.ignore();
 			}	break;
 			case 2:{
+				menu_user=0;
+				return main();
 			}	break;
 			case 3:{
 				ClearScreen();
@@ -767,6 +769,8 @@ int main(){
 				cin.ignore();
 			} break;
 			case 2:{
+				menu_user=0;
+				return main();
 			} break;
 			case 3:{
 				ClearScreen();
