@@ -5,13 +5,10 @@
 
 
 mahasiswa::mahasiswa(int id, std::string nama, int dd, int mm, int yy, 
-				std::string nrp, std::string departemen, int tahunmasuk)
-		: person(id, nama, dd, mm, yy), nrp(nrp), departemen(departemen), tahunmasuk(tahunmasuk)
+				std::string nrp, std::string departemen, int tahunmasuk, int semesterke, int skslulus)
+		: person(id, nama, dd, mm, yy), nrp(nrp), departemen(departemen), tahunmasuk(tahunmasuk), semesterke(semesterke), skslulus(skslulus)
 {
 	this->ipk = 0.0;
-	this->semesterke = 1;
-	this->skslulus = 0;
-
 	this->ips = std::vector<float>(14,0);
 }
 
