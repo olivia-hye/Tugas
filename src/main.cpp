@@ -277,7 +277,9 @@ int main(int argc, char** argv){
 					}	break;
 					case 2:{
 							recMhs.erase(recMhs.begin()+idUser-1);
-							recMhs.back().setId(idUser);
+							if(recMhs.back().getId() != 1){recMhs.back().setId(idUser);}
+							else{recMhs.back().setId(idUser-1);}
+							idM--;
 					}	break;
 					case 3:{
 					}	break;
