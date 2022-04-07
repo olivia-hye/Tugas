@@ -17,7 +17,7 @@ std::string tendik::getUnit()
 	return this->unit;
 }
 
-void tendik::setNPP(std::string NPP)
+void tendik::setNPP(std::string npp)
 {
 	this->npp = npp;
 }
