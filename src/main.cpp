@@ -17,7 +17,7 @@ vector<tendik> recTendik;
 //Global Variables (outside int main(); to prevent being redefined each time the program return to main();)
 int menu_user=0, menu_terpilih, menu_list, menu_edit;
 int idM = 0, idD = 0, idT=0, idUser=0;
-bool isLoggedIn;
+bool isLoggedIn = false;
 
 int main(){
 	//Global Variables
