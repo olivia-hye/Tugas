@@ -179,6 +179,7 @@ int main(){
 					cout << "Masukan ID Mahasiswa: "; 
 					cin >> idUser;
 					if(idUser > recMhs.size()){
+						ClearScreen();
 						cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
 						cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 						cin.ignore();		
@@ -215,7 +216,7 @@ int main(){
 								cout << "Input IP Semester " << i << ": ";
 								semester = i;
 								cin >> ips;
-								if(ips>=4.0){
+								if(ips>4.0){
 									cout << endl << "IP Semester tidak bisa lebih besar dari 4.0" << endl << endl;
 									cout << "Tekan Tombol Enter Untuk Kembali ke Menu Utama" << endl;
 									cin.ignore(); 
@@ -753,7 +754,7 @@ int main(){
 					cout << "Input IP Semester " << i << ": ";
 					semester = i;
 					cin >> ips;
-					if(ips>=4.0){
+					if(ips>4.0){
 						cout << endl << "IP Semester tidak bisa lebih besar dari 4.0" << endl << endl;
 						cout << "Tekan Tombol Enter Untuk Kembali ke Menu Utama" << endl;
 						cin.ignore(); 
