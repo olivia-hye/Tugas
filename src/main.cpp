@@ -558,13 +558,11 @@ int main(){
 							idT--;
 							for(i=0; i<idT; i++){
 								recTendik[i].setId(i+1);
+							}
 					}	break;
 					case 3:{
 					}	break;
-			}
-			
-		
-			}	break;
+				}	break;
 			case 7:{ 
 				menu_user=0;
 				return main();
@@ -574,7 +572,8 @@ int main(){
 				return 0;
 			}	break;
 			default:{
-			cout << "Pilihan tidak ditemukan" << endl;	
+			cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
+			cin.ignore(); cin.ignore();
 			} break;
 			}
 		}
@@ -654,7 +653,8 @@ int main(){
 				return 0;
 				}	break;
 			default:{
-				cout << "Pilihan tidak ditemukan" << endl;	
+				cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
+				cin.ignore(); cin.ignore();
 			} break;
 		}
 	}
@@ -750,7 +750,8 @@ int main(){
 				return 0;
 				}	break;
 			default:{
-				cout << "Pilihan tidak ditemukan" << endl;	
+				cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
+				cin.ignore(); cin.ignore();
 			} break;
 		}
 	}
