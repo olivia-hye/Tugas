@@ -17,6 +17,7 @@ vector<tendik> recTendik;
 //Global Variables (outside int main(); to prevent being redefined each time the program return to main();)
 int menu_user=0, menu_terpilih, menu_list, menu_edit;
 int idM = 0, idD = 0, idT=0, idUser=0;
+bool isLoggedIn = false;
 
 int main(){
 	//Global Variables
@@ -211,10 +212,17 @@ int main(){
 							cout << "MENU INPUT IP SEMESTER" << endl;
 							cout << "----------------------" << endl;
 							cout << "Input Semester Secara Berurutan" << endl;
-							for(i=1; i<=semesterke; i++){
+							for(i=1; i<=recMhs[idUser-1].getSemester(); i++){
 								cout << "Input IP Semester " << i << ": ";
 								semester = i;
 								cin >> ips;
+								if(ips>=4.0){
+									cout << endl << "IP Semester tidak bisa lebih besar dari 4.0" << endl << endl;
+									cout << "Tekan Tombol Enter Untuk Kembali ke Menu Utama" << endl;
+									cin.ignore(); 
+									cin.ignore(); 
+									return main();
+								}
 								recMhs[idUser-1].setIPS(semester, ips);
 						}
 							cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
@@ -222,6 +230,13 @@ int main(){
 							cin.ignore();
 							}	break;
 						case 2:{
+							if(recMhs[idM-1].getIPS(1) == 0 && recMhs[idM-1].getIPS(2) == 0){
+								cout << "IP Semester dan IP Kumulatif Masih Belum Terisi" << endl << endl;
+								cout << "Tekan Enter Untuk Kembali Ke Menu Utama" << endl;
+								cin.ignore();
+								cin.ignore();
+								return main();
+							}
 							for(i=1; i<=recMhs[idUser-1].getSemester(); i++){
 								cout << "IP Semester " << i << ": " << recMhs[idUser-1].getIPS(i) << endl;
 							}
@@ -595,29 +610,31 @@ int main(){
 	}
 	//Interface Mahasiswa
 	while(menu_user==2){
-		while(idM==0){
-			ClearScreen();
-			cout << "Database Mahasiswa Masih Kosong" << endl << endl;
-			cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
-			cin.ignore();
-			cin.ignore();
-			menu_user=0;
-			return main();
-			} 
-		cout << "Masukkan ID Mahasiswa Anda: ";
-		cin >> idM;
-		while(idM > recMhs.size()){
-			cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
-			cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-			cin.ignore();		
-			cin.ignore();
-			menu_user=0;
-			return main();
+		if(isLoggedIn == false){
+			while(idM==0){
+				ClearScreen();
+				cout << "Database Mahasiswa Masih Kosong" << endl << endl;
+				cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
+				cin.ignore();
+				cin.ignore();
+				menu_user=0;
+				return main();
+				} 
+			cout << "Masukkan ID Mahasiswa Anda: ";
+			cin >> idM;
+			while(idM > recMhs.size()){
+				cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
+				cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+				cin.ignore();		
+				cin.ignore();
+				menu_user=0;
+				return main();
 			}
+			isLoggedIn = true;
+		}
 		ClearScreen();
 		cout << "Selamat datang di SIAKAD Universitas Anak Bulan, " << recMhs[idM-1].getNama();
 		cout << "-----------------------------------------------------------" << endl << endl;
-		cout << endl << endl;
 		cout << "DATA MAHASISWA" << endl;
 		cout << "--------------" << endl;
 		cout << "ID Mahasiswa: " << idM << endl;
@@ -638,6 +655,13 @@ int main(){
 		switch (menu_terpilih){
 			case 1:{
 				ClearScreen();
+				if(recMhs[idM-1].getIPS(1) == 0 && recMhs[idM-1].getIPS(2) == 0){
+					cout << "IP Semester dan IP Kumulatif Anda Masih Belum Diisi" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali Ke Menu Utama" << endl;
+					cin.ignore();
+					cin.ignore();
+					return main();
+				}
 				cout << "IP SEMESTER & KUMULATIF" << endl;
 				cout << "-----------------------" << endl;
 				for(i=1; i<=recMhs[idM-1].getSemester(); i++){
@@ -655,6 +679,7 @@ int main(){
 				}	break;
 			case 2:{
 				menu_user=0;
+				isLoggedIn = false;
 				return main();
 				}	break;
 			case 3:{
@@ -668,29 +693,31 @@ int main(){
 	}
 	//Interface Dosen
 	while(menu_user==3){
-		while(idD==0){
-			ClearScreen();
-			cout << "Database Dosen Masih Kosong" << endl << endl;
-			cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
-			cin.ignore();
-			cin.ignore();
-			menu_user=0;
-			return main();
+		if(isLoggedIn == false){
+			while(idD==0){
+				ClearScreen();
+				cout << "Database Dosen Masih Kosong" << endl << endl;
+				cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
+				cin.ignore();
+				cin.ignore();
+				menu_user=0;
+				return main();
 			} 
-		cout << "Masukkan ID Dosen Anda: ";
-		cin >> idD;
-		while(idD > recDosen.size()){
-			cout << "ID Dosen Tidak Ditemukan" << endl << endl;
-			cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-			cin.ignore();		
-			cin.ignore();
-			menu_user=0;
-			return main();
-			} 
+			cout << "Masukkan ID Dosen Anda: ";
+			cin >> idD;
+			while(idD > recDosen.size()){
+				cout << "ID Dosen Tidak Ditemukan" << endl << endl;
+				cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+				cin.ignore();		
+				cin.ignore();
+				menu_user=0;
+				return main();
+			}
+			isLoggedIn = true;
+		}
 		ClearScreen();
 		cout << "Selamat datang di SIAKAD Universitas Anak Bulan" << endl;
 		cout << "-----------------------------------------------" << endl << endl;
-		cout << endl << endl;
 		cout << "DATA DOSEN" << endl;
 		cout << "----------" << endl;
 		cout << "ID Dosen: " << idD << endl;
@@ -708,18 +735,42 @@ int main(){
 		cout << endl;
 		switch (menu_terpilih){
 			case 1:{
+				while(idM==0){
+					ClearScreen();
+					cout << "Database Mahasiswa Masih Kosong" << endl << endl;
+					cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
+					cin.ignore();
+					cin.ignore();
+					return main();
+			} 
 				ClearScreen();
 				cout << "MENU INPUT IP SEMESTER MAHASISWA" << endl;
 				cout << "--------------------------------" << endl;
 				cout << "Masukkan ID Mahasiswa: ";
 				cin >> idM;
 				cout << endl;
+				while(idM > recMhs.size()){
+					ClearScreen;
+					cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();		
+					cin.ignore();
+					menu_user=3;
+					return main();
+				}
 				cout << "Nama Mahasiswa: " << recMhs[idM-1].getNama() << endl;
 				cout << "NRP Mahasiswa: " << recMhs[idM-1].getNRP() << endl << endl;
-				for(i=1; i<=semesterke; i++){
+				for(i=1; i<=recMhs[idM-1].getSemester(); i++){
 					cout << "Input IP Semester " << i << ": ";
 					semester = i;
 					cin >> ips;
+					if(ips>=4.0){
+						cout << endl << "IP Semester tidak bisa lebih besar dari 4.0" << endl << endl;
+						cout << "Tekan Tombol Enter Untuk Kembali ke Menu Utama" << endl;
+						cin.ignore(); 
+						cin.ignore(); 
+						return main();
+					}
 					recMhs[idM-1].setIPS(semester, ips);
 				}
 				cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
@@ -728,6 +779,7 @@ int main(){
 				}	break;
 			case 2:{
 				menu_user=0;
+				isLoggedIn = false;
 				return main();
 				}	break;
 			case 3:{
