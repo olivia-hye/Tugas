@@ -24,7 +24,7 @@ int main(){
 	int dd, mm, yy, tahunmasuk, semesterke, skslulus, semester;
 	float ips;
 	long unsigned i;
-	string date_time, nama, nrp, npp, departemen, pendidikan, unit, user;
+	string nama, nrp, npp, departemen, pendidikan, unit, user;
 
 	//User Logon Page
 	while(menu_user==0){
@@ -178,14 +178,14 @@ int main(){
 					cout << endl;
 					cout << "Masukan ID Mahasiswa: "; 
 					cin >> idUser;
-					ClearScreen();
-					while(idUser > recMhs.size()){
+					if(idUser > recMhs.size()){
 						cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
 						cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 						cin.ignore();		
 						cin.ignore();
 						return main();
 					}
+					ClearScreen();
 					cout << "DATA MAHASISWA " << idUser << endl;
 					cout << "----------------" << endl;
 					cout << "ID Mahasiswa: " << idUser << endl;
@@ -212,17 +212,24 @@ int main(){
 							cout << "MENU INPUT IP SEMESTER" << endl;
 							cout << "----------------------" << endl;
 							cout << "Input Semester Secara Berurutan" << endl;
-							for(i=1; i<=semesterke; i++){
+							for(i=1; i<=recMhs[idUser-1].getSemester(); i++){
 								cout << "Input IP Semester " << i << ": ";
 								semester = i;
 								cin >> ips;
 								recMhs[idUser-1].setIPS(semester, ips);
-						}
+							}
 							cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
 							cin.ignore();
 							cin.ignore();
 							}	break;
 						case 2:{
+							if(recMhs[idUser-1].getIPS(1) == 0 && recMhs[idUser-1].getIPS(2) == 0){
+								cout << "IP Semester dan IP Kumulatif Anda Belum Terisi" << endl << endl;
+								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+								cin.ignore();		
+								cin.ignore();
+								return main();
+							}
 							for(i=1; i<=recMhs[idUser-1].getSemester(); i++){
 								cout << "IP Semester " << i << ": " << recMhs[idUser-1].getIPS(i) << endl;
 							}
@@ -596,18 +603,19 @@ int main(){
 	}
 	//Interface Mahasiswa
 	while(menu_user==2){
-		while(idM==0){
-			ClearScreen();
-			cout << "Database Mahasiswa Masih Kosong" << endl << endl;
-			cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
-			cin.ignore();
-			cin.ignore();
-			menu_user=0;
-			return main();
-			} 
-		cout << "Masukkan ID Mahasiswa Anda: ";
-		cin >> idM;
-		while(idM > recMhs.size()){
+		if(isLoggedIn == false){
+			while(idM==0){
+				ClearScreen();
+				cout << "Database Mahasiswa Masih Kosong" << endl << endl;
+				cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
+				cin.ignore();
+				cin.ignore();
+				menu_user=0;
+				return main();
+				} 
+			cout << "Masukkan ID Mahasiswa Anda: ";
+			cin >> idM;
+			while(idM > recMhs.size()){
 			cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
 			cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 			cin.ignore();		
@@ -615,10 +623,11 @@ int main(){
 			menu_user=0;
 			return main();
 			}
+		isLoggedIn = true;
+		}
 		ClearScreen();
-		cout << "Selamat datang di SIAKAD Universitas Anak Bulan, " << recMhs[idM-1].getNama();
+		cout << "Selamat datang di SIAKAD Universitas Anak Bulan, " << recMhs[idM-1].getNama() << endl;
 		cout << "-----------------------------------------------------------" << endl << endl;
-		cout << endl << endl;
 		cout << "DATA MAHASISWA" << endl;
 		cout << "--------------" << endl;
 		cout << "ID Mahasiswa: " << idM << endl;
@@ -641,6 +650,13 @@ int main(){
 				ClearScreen();
 				cout << "IP SEMESTER & KUMULATIF" << endl;
 				cout << "-----------------------" << endl;
+				if(recMhs[idM-1].getIPS(1) == 0 && recMhs[idM-1].getIPS(2) == 0){
+					cout << "IP Semester dan IP Kumulatif Anda Belum Terisi" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();		
+					cin.ignore();
+					return main();
+				}
 				for(i=1; i<=recMhs[idM-1].getSemester(); i++){
 						cout << "IP Semester " << i << ": " << recMhs[idM-1].getIPS(i) << endl;
 						}
@@ -655,7 +671,8 @@ int main(){
 						cin.ignore();
 				}	break;
 			case 2:{
-				menu_user=0;
+				menu_user = 0;
+				isLoggedIn = false;
 				return main();
 				}	break;
 			case 3:{
@@ -669,29 +686,31 @@ int main(){
 	}
 	//Interface Dosen
 	while(menu_user==3){
-		while(idD==0){
-			ClearScreen();
-			cout << "Database Dosen Masih Kosong" << endl << endl;
-			cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
-			cin.ignore();
-			cin.ignore();
-			menu_user=0;
-			return main();
+		if(isLoggedIn == false){
+			while(idD==0){
+				ClearScreen();
+				cout << "Database Dosen Masih Kosong" << endl << endl;
+				cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
+				cin.ignore();
+				cin.ignore();
+				menu_user=0;
+				return main();
 			} 
-		cout << "Masukkan ID Dosen Anda: ";
-		cin >> idD;
-		while(idD > recDosen.size()){
-			cout << "ID Dosen Tidak Ditemukan" << endl << endl;
-			cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-			cin.ignore();		
-			cin.ignore();
-			menu_user=0;
-			return main();
+			cout << "Masukkan ID Dosen Anda: ";
+			cin >> idD;
+			while(idD > recDosen.size()){
+				cout << "ID Dosen Tidak Ditemukan" << endl << endl;
+				cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+				cin.ignore();		
+				cin.ignore();
+				menu_user=0;
+				return main();
 			} 
+			isLoggedIn = true;
+		}		
 		ClearScreen();
 		cout << "Selamat datang di SIAKAD Universitas Anak Bulan" << endl;
 		cout << "-----------------------------------------------" << endl << endl;
-		cout << endl << endl;
 		cout << "DATA DOSEN" << endl;
 		cout << "----------" << endl;
 		cout << "ID Dosen: " << idD << endl;
@@ -714,10 +733,17 @@ int main(){
 				cout << "--------------------------------" << endl;
 				cout << "Masukkan ID Mahasiswa: ";
 				cin >> idM;
+				if(idM > recMhs.size()){
+					cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();
+					cin.ignore();
+					return main();
+				}
 				cout << endl;
 				cout << "Nama Mahasiswa: " << recMhs[idM-1].getNama() << endl;
 				cout << "NRP Mahasiswa: " << recMhs[idM-1].getNRP() << endl << endl;
-				for(i=1; i<=semesterke; i++){
+				for(i=1; i<=recMhs[idM-1].getSemester(); i++){
 					cout << "Input IP Semester " << i << ": ";
 					semester = i;
 					cin >> ips;
