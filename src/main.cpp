@@ -735,13 +735,21 @@ int main(){
 		cout << endl;
 		switch (menu_terpilih){
 			case 1:{
+				while(idM==0){
+					ClearScreen();
+					cout << "Database Mahasiswa Masih Kosong" << endl << endl;
+					cout << "Tekan Tombol Enter Untuk Kembali Ke Menu Utama";
+					cin.ignore();
+					cin.ignore();
+					return main();
+				} 
 				ClearScreen();
 				cout << "MENU INPUT IP SEMESTER MAHASISWA" << endl;
 				cout << "--------------------------------" << endl;
 				cout << "Masukkan ID Mahasiswa: ";
 				cin >> idM;
 				if(idM > recMhs.size()){
-					cout << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
+					cout << endl << "ID Mahasiswa Tidak Ditemukan" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 					cin.ignore();
 					cin.ignore();
