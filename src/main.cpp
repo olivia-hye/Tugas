@@ -211,11 +211,17 @@ int main(){
 							ClearScreen();
 							cout << "MENU INPUT IP SEMESTER" << endl;
 							cout << "----------------------" << endl;
-							cout << "Input Semester Secara Berurutan" << endl;
 							for(i=1; i<=recMhs[idUser-1].getSemester(); i++){
 								cout << "Input IP Semester " << i << ": ";
 								semester = i;
 								cin >> ips;
+								if(ips>=4.0){
+									cout << endl << "IP Semester tidak bisa lebih besar dari 4.0" << endl << endl;
+									cout << "Tekan Tombol Enter Untuk Kembali ke Menu Utama" << endl;
+									cin.ignore(); 
+									cin.ignore(); 
+									return main();
+								}
 								recMhs[idUser-1].setIPS(semester, ips);
 							}
 							cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
