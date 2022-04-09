@@ -1,6 +1,3 @@
-
-//TODO: FIX LINE 322-326 (DELETION)
-
 #include <iostream>
 #include <vector>
 #include <string>
