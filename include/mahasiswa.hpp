@@ -35,8 +35,6 @@ public:
 	void setSKSLulus(int skslulus);
 	int getSKSLulus();
 
-	void hitungIPK();
-
 	void setIPS(int semester, float ips);
 	float getIPS(int semester);
 	std::vector<float> getAllIPS();

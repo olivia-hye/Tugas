@@ -326,7 +326,7 @@ int main(){
 							idM--;
 							for(i=0; i<idM; i++){
 								recMhs[i].setId(i+1);
-							}	
+							}
 						}	break;
 						case 5:{
 						}	break;
