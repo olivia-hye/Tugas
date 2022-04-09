@@ -598,6 +598,7 @@ int main(){
 				cin.ignore(); cin.ignore();
 			} break;
 		}
+		cin.clear(); cin.ignore();
 	}
 	//Interface Mahasiswa
 	while(menu_user==2){
@@ -679,6 +680,7 @@ int main(){
 				cin.ignore(); cin.ignore();
 			} break;
 		}
+		cin.clear(); cin.ignore();
 	}
 	//Interface Dosen
 	while(menu_user==3){
@@ -777,6 +779,7 @@ int main(){
 				cin.ignore(); cin.ignore();
 			} break;
 		}
+		cin.clear(); cin.ignore();
 	}
 	return 0;
 }

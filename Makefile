@@ -1,5 +1,5 @@
 CXX?=g++ 
-CXXFLAGS+= --std=c++17 -O3 -I.
+CXXFLAGS+= --std=c++17 -O3 -I. -static-libgcc -static-libstdc++ -static
 SOURCES= $(wildcard src/*.cpp)
 
 src/%.o: src/%.cpp 
