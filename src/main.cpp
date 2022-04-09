@@ -314,6 +314,11 @@ int main(){
 									cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 									cin.ignore(); cin.ignore();
 									}	break;
+								default:{
+									ClearScreen();
+									cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
+									cin.ignore(); cin.ignore();
+								}
 							}
 						}	break;
 						case 4:{
@@ -325,6 +330,11 @@ int main(){
 						}	break;
 						case 5:{
 						}	break;
+						default:{
+							ClearScreen();
+							cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
+							cin.ignore(); cin.ignore();
+						}
 				}
 					}
 			}	break;
@@ -448,6 +458,11 @@ int main(){
 					}	break;
 					case 3:{
 					}	break;
+					default:{
+						ClearScreen();
+						cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
+						cin.ignore(); cin.ignore();
+					}
 				}
 			}	break;
 			case 6:{
@@ -562,7 +577,13 @@ int main(){
 					}	break;
 					case 3:{
 					}	break;
+					default:{
+						ClearScreen();
+						cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
+						cin.ignore(); cin.ignore();
+					}
 				}	break;
+			}	break;
 			case 7:{ 
 				menu_user=0;
 				return main();
@@ -572,10 +593,10 @@ int main(){
 				return 0;
 			}	break;
 			default:{
-			cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
-			cin.ignore(); cin.ignore();
+				ClearScreen();
+				cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
+				cin.ignore(); cin.ignore();
 			} break;
-			}
 		}
 	}
 	//Interface Mahasiswa
@@ -653,6 +674,7 @@ int main(){
 				return 0;
 				}	break;
 			default:{
+				ClearScreen();
 				cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
 				cin.ignore(); cin.ignore();
 			} break;
@@ -750,6 +772,7 @@ int main(){
 				return 0;
 				}	break;
 			default:{
+				ClearScreen();
 				cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
 				cin.ignore(); cin.ignore();
 			} break;
