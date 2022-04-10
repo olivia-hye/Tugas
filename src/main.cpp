@@ -5,7 +5,6 @@
 #include "include/mahasiswa.hpp"
 #include "include/dosen.hpp"
 #include "include/tendik.hpp"
-#include "include/clearscreen.hpp"
 
 using namespace std;
 
@@ -19,6 +18,9 @@ int menu_user=0, menu_terpilih, menu_list, menu_edit;
 long long unsigned idM = 0, idD = 0, idT=0, idUser=0;
 bool isLoggedIn = false;
 
+void ClearScreen(){
+    system("cls")&&system("clear");
+}
 int main(){
 	//Global Variables
 	int dd, mm, yy, tahunmasuk, semesterke, skslulus, semester;
