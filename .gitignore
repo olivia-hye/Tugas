@@ -1,6 +1,0 @@
-sim.exe
-sim
-*.o
-src/dbase.cpp
-include/dbase.hpp
-laporan.txt
