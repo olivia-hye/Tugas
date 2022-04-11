@@ -18,9 +18,11 @@ int menu_user=0, menu_terpilih, menu_list, menu_edit;
 long long unsigned idM = 0, idD = 0, idT=0, idUser=0;
 bool isLoggedIn = false;
 
+//ClearScreen Function: clears the terminal using both "system("cls")" (for cmd) and "system("clear")" (for powershell & unix based terminal)
 void ClearScreen(){
     system("cls")&&system("clear");
 }
+
 int main(){
 	//Global Variables
 	int dd, mm, yy, tahunmasuk, semesterke, skslulus, semester;
@@ -34,7 +36,7 @@ int main(){
 		cout << "SIAKAD Universitas Anak Bulan" << endl;
 		cout << "-----------------------------" << endl;
 
-		//Output Current Date
+		//Output current date using ctime library
     	time_t ttime = time(0);
     	tm *local_time = localtime(&ttime);
 		cout << "Tanggal: " << local_time->tm_mday << "/" << 1 + local_time->tm_mon << "/" << 1900 + local_time->tm_year << endl;
@@ -225,26 +227,26 @@ int main(){
 								cout << "Input IP Semester " << i << ": ";
 								semester = i;
 								cin >> ips;
-								if(ips>4.0){
+								while(ips>4.0){
 									cout << endl << "IP Semester tidak bisa lebih besar dari 4.0" << endl << endl;
-									cout << "Tekan Tombol Enter Untuk Kembali ke Menu Utama" << endl;
-									cin.ignore(); 
-									cin.ignore(); 
-									return main();
+									cout << "Input IP Semester " << i << ": ";
+									cin >> ips;
 								}
 								recMhs[idUser-1].setIPS(semester, ips);
 							}
 							cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
-							cin.ignore(); cin.ignore();
+							cin.ignore();
 							}	break;
 						case 2:{
 							if(recMhs[idUser-1].getIPS(1) == 0 && recMhs[idUser-1].getIPS(2) == 0){
+								ClearScreen();
 								cout << "IP Semester dan IP Kumulatif Mahasiswa Belum Terisi" << endl << endl;
 								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
 								cin.ignore();		
 								cin.ignore();
 								return main();
 							}
+							cout << endl;
 							for(i=1; i<=recMhs[idUser-1].getSemester(); i++){
 								cout << "IP Semester " << i << ": " << recMhs[idUser-1].getIPS(i) << endl;
 							}
@@ -255,7 +257,7 @@ int main(){
 							ipk = temp / (i-1);
 							cout << endl << "IP Kumulatif: " << ipk << endl << endl;
 							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-							cin.ignore(); cin.ignore();
+							cin.ignore();
 							}	break;
 						case 3:{
 							ClearScreen();
@@ -301,7 +303,7 @@ int main(){
 									recMhs[idUser-1].setTglLahir(dd,mm,yy);
 									cout << "Tanggal Lahir Telah Berhasil Diubah" << endl << endl;
 									cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-									cin.ignore(); cin.ignore();
+									cin.ignore();
 								}	break;
 								case 3:{
 									cout << "NRP: " << recMhs[idUser-1].getNRP() << endl;
@@ -310,7 +312,7 @@ int main(){
 									recMhs[idUser-1].setNRP(nrp);
 									cout << "NRP Telah Berhasil Diubah" << endl << endl;
 									cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-									cin.ignore(); cin.ignore();
+									cin.ignore();
 								}	break;
 								case 4:{
 									cout << "Departemen: " << recMhs[idUser-1].getDepartemen() << endl;
@@ -328,7 +330,7 @@ int main(){
 									recMhs[idUser-1].setTahunMasuk(tahunmasuk);
 									cout << "Tahun Masuk Telah Berhasil Diubah" << endl << endl;
 									cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-									cin.ignore(); cin.ignore();
+									cin.ignore();
 								}	break;
 								case 6:{
 									cout << "Semester: " << recMhs[idUser-1].getSemester() << endl;
@@ -337,7 +339,7 @@ int main(){
 									recMhs[idUser-1].setSemester(semesterke);
 									cout << "Semester Telah Berhasil Diubah" << endl << endl;
 									cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-									cin.ignore(); cin.ignore();
+									cin.ignore();
 								}	break;
 								case 7:{
 									cout << "Jumlah SKS Lulus: " << recMhs[idUser-1].getSKSLulus() << endl;
@@ -346,12 +348,12 @@ int main(){
 									recMhs[idUser-1].setSKSLulus(skslulus);
 									cout << "Jumlah SKS Lulus Telah Berhasil Diubah" << endl << endl;
 									cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-									cin.ignore(); cin.ignore();
+									cin.ignore();
 								}	break;
 								default:{
 									ClearScreen();
 									cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
-									cin.ignore(); cin.ignore();
+									cin.ignore(); 
 								}
 							}
 						}	break;
@@ -367,7 +369,7 @@ int main(){
 						default:{
 							ClearScreen();
 							cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
-							cin.ignore(); cin.ignore();
+							cin.ignore();
 						}
 				}
 					}
@@ -377,7 +379,7 @@ int main(){
 				while(recDosen.size() == 0){
 					cout << "Belum ada data dosen" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-					cin.ignore();	cin.ignore();
+					cin.ignore(); cin.ignore();
 					return main();
 					}
 				cout << "LIST DOSEN" << endl;
@@ -452,7 +454,7 @@ int main(){
 								recDosen[idUser-1].setTglLahir(dd,mm,yy);
 								cout << "Tanggal Lahir Telah Berhasil Diubah" << endl << endl;
 								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-								cin.ignore(); cin.ignore();
+								cin.ignore();
 							}	break;
 							case 3:{
 								cout << "NPP: " << recDosen[idUser-1].getNPP() << endl;
@@ -461,7 +463,7 @@ int main(){
 								recDosen[idUser-1].setNPP(npp);
 								cout << "NPP Telah Berhasil Diubah" << endl << endl;
 								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-								cin.ignore(); cin.ignore();
+								cin.ignore();
 							}	break;
 							case 4:{
 								cout << "Departemen: " << recDosen[idUser-1].getDepartemen() << endl;
@@ -484,7 +486,7 @@ int main(){
 							default:{
 								ClearScreen();
 								cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
-								cin.ignore(); cin.ignore();
+								cin.ignore();
 							}
 						}
 					}	break;
@@ -500,7 +502,7 @@ int main(){
 					default:{
 						ClearScreen();
 						cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
-						cin.ignore(); cin.ignore();
+						cin.ignore();
 					}
 				}
 			}	break;
@@ -585,7 +587,7 @@ int main(){
 								recTendik[idUser-1].setTglLahir(dd,mm,yy);
 								cout << "Tanggal Lahir Telah Berhasil Diubah" << endl << endl;
 								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-								cin.ignore();	cin.ignore();
+								cin.ignore();
 							}	break;
 							case 3:{
 								cout << "NPP: " << recTendik[idUser-1].getNPP() << endl;
@@ -594,7 +596,7 @@ int main(){
 								recTendik[idUser-1].setNPP(npp);
 								cout << "NPP Telah Berhasil Diubah" << endl << endl;
 								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
-								cin.ignore();	cin.ignore();
+								cin.ignore();
 							}	break;
 							case 4:{
 								cout << "Unit: " << recTendik[idUser-1].getUnit() << endl;
@@ -619,7 +621,7 @@ int main(){
 					default:{
 						ClearScreen();
 						cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
-						cin.ignore(); cin.ignore();
+						cin.ignore();
 					}
 				}	break;
 			}	break;
@@ -634,7 +636,7 @@ int main(){
 			default:{
 				ClearScreen();
 				cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
-				cin.ignore(); cin.ignore();
+				cin.ignore();
 			} break;
 		}
 		cin.clear(); cin.ignore();
@@ -716,7 +718,7 @@ int main(){
 			default:{
 				ClearScreen();
 				cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
-				cin.ignore(); cin.ignore();
+				cin.ignore();
 			} break;
 		}
 		cin.clear(); cin.ignore();
@@ -791,17 +793,15 @@ int main(){
 					cout << "Input IP Semester " << i << ": ";
 					semester = i;
 					cin >> ips;
-					if(ips>4.0){
+					while(ips>4.0){
 						cout << endl << "IP Semester tidak bisa lebih besar dari 4.0" << endl << endl;
-						cout << "Tekan Tombol Enter Untuk Kembali ke Menu Utama" << endl;
-						cin.ignore(); 
-						cin.ignore(); 
-						return main();
+						cout << "Input IP Semester " << i << ": ";
+						cin >> ips;
 					}
 					recMhs[idM-1].setIPS(semester, ips);
 				}
 				cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
-				cin.ignore(); cin.ignore();
+				cin.ignore();
 				}	break;
 			case 2:{
 				menu_user=0;
@@ -815,7 +815,7 @@ int main(){
 			default:{
 				ClearScreen();
 				cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
-				cin.ignore(); cin.ignore();
+				cin.ignore();
 			} break;
 		}
 		cin.clear(); cin.ignore();
