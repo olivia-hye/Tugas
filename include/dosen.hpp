@@ -2,7 +2,9 @@
 #define __DOSEN_HPP__
 
 #include <iostream>
+#include <vector>
 #include "include/person.hpp"
+#include "include/matakuliah.hpp"
 
 class dosen : public person {
 private:
@@ -18,6 +20,7 @@ public:
 	std::string getDepartemen();
 	void setPendidikan(std::string pendidikan);
 	std::string getPendidikan();
+	std::vector<matkul> matKulAjar;
 };
 
 #endif 

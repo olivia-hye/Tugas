@@ -1,6 +1,8 @@
 sim.exe
 sim
 *.o
-src/dbase.cpp
-include/dbase.hpp
+LICENSE
 laporan.txt
+.vscode/configurationCache.log
+.vscode/dryrun.log
+.vscode/targets.log

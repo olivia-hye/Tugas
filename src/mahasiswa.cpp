@@ -2,13 +2,15 @@
 #include <string>
 #include <vector>
 #include "include/mahasiswa.hpp"
+#include "include/matakuliah.hpp"
 
 mahasiswa::mahasiswa(int id, std::string nama, int dd, int mm, int yy, 
-				std::string nrp, std::string departemen, int tahunmasuk, int semesterke, int skslulus)
-		: person(id, nama, dd, mm, yy), nrp(nrp), departemen(departemen), tahunmasuk(tahunmasuk), semesterke(semesterke), skslulus(skslulus)
+				std::string nrp, std::string departemen, int tahunmasuk, int semesterke, int skslulus, int jumlahmatkul)
+		: person(id, nama, dd, mm, yy), nrp(nrp), departemen(departemen), tahunmasuk(tahunmasuk), semesterke(semesterke), skslulus(skslulus), jumlahmatkul(jumlahmatkul)
 {
 	this->ipk = 0.0;
 	this->ips = std::vector<float>(14,0);
+	this->jumlahmatkul = 0;
 }
 
 void mahasiswa::setNRP(std::string nrp){
@@ -69,6 +71,7 @@ std::vector<float> mahasiswa::getAllIPS()
 {
 	return this->ips;
 }
+
 
 
 

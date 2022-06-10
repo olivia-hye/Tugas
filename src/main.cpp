@@ -5,6 +5,7 @@
 #include "include/mahasiswa.hpp"
 #include "include/dosen.hpp"
 #include "include/tendik.hpp"
+#include "include/matakuliah.hpp"
 
 using namespace std;
 
@@ -12,10 +13,11 @@ using namespace std;
 vector<mahasiswa> recMhs;
 vector<dosen> recDosen;
 vector<tendik> recTendik;
+vector<matkul> recMatKul;
 
 //Global Variables (outside int main(); to prevent being redefined each time the program return to main();)
 int menu_user=0, menu_terpilih, menu_list, menu_edit;
-long long unsigned idM = 0, idD = 0, idT=0, idUser=0;
+long long unsigned id = 0, idM = 0, idD = 0, idT=0, idMK=0, idUser=0, idMatKul = 0;
 bool isLoggedIn = false;
 
 //ClearScreen Function: clears the terminal using both "system("cls")" (for cmd) and "system("clear")" (for powershell & unix based terminal)
@@ -25,10 +27,10 @@ void ClearScreen(){
 
 int main(){
 	//Global Variables
-	int dd, mm, yy, tahunmasuk, semesterke, skslulus, semester;
+	int dd, mm, yy, tahunmasuk, semesterke, skslulus, semester, sks, jumlahmatkul = 0;
 	float ips;
 	long unsigned i;
-	string nama, nrp, npp, departemen, pendidikan, unit, user;
+	string nama, nrp, npp, departemen, pendidikan, unit, user, kodeMK;
 
 	//User Logon Page
 	while(menu_user==0){
@@ -63,17 +65,20 @@ int main(){
 		cout << "Data statistik:" << endl;
 		cout << "  1. Jumlah Mahasiswa             : " << recMhs.size() << " Mahasiswa" << endl;
 		cout << "  2. Jumlah Dosen                 : " << recDosen.size() << " Dosen" << endl;
-		cout << "  3. Jumlah Tenaga Kependidikan   : " << recTendik.size() << " Tenaga Kependidikan" << endl << endl;
+		cout << "  3. Jumlah Tenaga Kependidikan   : " << recTendik.size() << " Tenaga Kependidikan" << endl;
+		cout << "  4. Jumlah Mata Kuliah		  : " << recMatKul.size() << " Mata Kuliah" << endl << endl;
 
 		cout << "Menu: " << endl;
-		cout << "  1. Tambah Mahasiswa" << endl;
-		cout << "  2. Tambah Dosen" << endl;
-		cout << "  3. Tambah Tenaga Kependidikan" << endl;
-		cout << "  4. Tampilkan semua Mahasiswa" << endl;
-		cout << "  5. Tampilkan semua Dosen" << endl;
-		cout << "  6. Tampilkan semua Tenaga Kependidikan" << endl;
-		cout << "  7. Logout" << endl;
-		cout << "  8. Keluar Program" << endl;
+		cout << "  1.  Tambah Mahasiswa" << endl;
+		cout << "  2.  Tambah Dosen" << endl;
+		cout << "  3.  Tambah Tenaga Kependidikan" << endl;
+		cout << "  4.  Tambah Mata Kuliah" << endl;
+		cout << "  5.  Tampilkan semua Mahasiswa" << endl;
+		cout << "  6.  Tampilkan semua Dosen" << endl;
+		cout << "  7.  Tampilkan semua Tenaga Kependidikan" << endl;
+		cout << "  8.  Tampilkan semua Mata Kuliah" << endl;
+		cout << "  9.  Logout" << endl;
+		cout << "  10. Keluar Program" << endl;
 		cout << "-> Silahkan memilih salah satu: ";
 		cin >> menu_terpilih;
 		cout << endl;
@@ -111,7 +116,7 @@ int main(){
 				cin >> semesterke;
 				cout << "Jumlah SKS Lulus: ";
 				cin >> skslulus;
-				mahasiswa mhs(idM, nama, dd, mm, yy, nrp, departemen, tahunmasuk, semesterke, skslulus);
+				mahasiswa mhs(idM, nama, dd, mm, yy, nrp, departemen, tahunmasuk, semesterke, skslulus, jumlahmatkul);
 				recMhs.push_back(mhs);
 			}	break;
 			case 2:{
@@ -178,6 +183,20 @@ int main(){
 			}	break;
 			case 4:{
 				ClearScreen();
+				cout << "MENU TAMBAH MATA KULIAH" << endl;
+				cout << "-----------------------" << endl;
+				++idMK;
+				cout << "Nama Mata Kuliah: ";
+				getline(cin >> ws, nama);
+				cout << "Kode Mata Kuliah: ";
+				getline(cin >> ws, kodeMK);
+				cout << "Jumlah SKS: ";
+				cin >> sks;
+				matkul mk(idMK, nama, kodeMK, sks);
+				recMatKul.push_back(mk);
+			}	break;
+			case 5:{
+				ClearScreen();
 				if(recMhs.size() == 0){
 					cout << "Belum ada data mahasiswa" << endl << endl;
 					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
@@ -208,14 +227,17 @@ int main(){
 					cout << "Departemen: " << recMhs[idUser-1].getDepartemen() << endl;
 					cout << "Tahun Masuk: " << recMhs[idUser-1].getTahunMasuk() << endl;
 					cout << "Semester: " << recMhs[idUser-1].getSemester() << endl;
-					cout << "Jumlah SKS Lulus: " << recMhs[idUser-1].getSKSLulus() << endl << endl;
+					cout << "Jumlah SKS Lulus: " << recMhs[idUser-1].getSKSLulus() << endl;
+					cout << "Jumlah Mata Kuliah: " << recMhs[idUser-1].matKulTerambil.size() << endl << endl;
 
 					cout << "Menu: " << endl;
 					cout << "  1. Input IP Semester" << endl;
 					cout << "  2. Lihat IP Semester & IP Kumulatif" << endl;
-					cout << "  3. Edit Data" << endl;
-					cout << "  4. Hapus Data" << endl;
-					cout << "  5. Kembali ke Menu Utama" << endl;
+					cout << "  3. Tambahkan Mata Kuliah" << endl;
+					cout << "  4. Lihat Mata Kuliah" << endl;
+					cout << "  5. Edit Data" << endl;
+					cout << "  6. Hapus Data" << endl;
+					cout << "  7. Kembali ke Menu Utama" << endl;
 					cout << "-> Silahkan memilih salah satu: ";
 					cin >> menu_list;
 					switch (menu_list){
@@ -260,6 +282,64 @@ int main(){
 							cin.ignore();
 							}	break;
 						case 3:{
+							ClearScreen();
+							cout << "MENU INPUT MATA KULIAH" << endl;
+							cout << "----------------------" << endl << endl;
+							while(recMatKul.size() == 0){
+								cout << "Belum ada data mata kuliah" << endl << endl;
+								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+								cin.ignore();	cin.ignore();
+								return main();
+							}
+							cout << "LIST MATA KULIAH" << endl;
+							cout << "----------------" << endl;
+							for(i=0; i<recMatKul.size(); i++){
+								cout << "ID: " << recMatKul[i].getID() << "| Kode: " << recMatKul[i].getKode() << " | Nama: " << recMatKul[i].getNama() << " | SKS: " << recMatKul[i].getSKS() <<endl;
+							}
+							cout << endl;
+						
+							cout << "Masukkan ID Mata Kuliah: ";
+							cin >> idMatKul;
+							while(idMatKul>recMatKul.size()){
+								cout << "ID Mata Kuliah Salah, Silahkan Isi Kembali." << endl << endl;
+								cout << "ID Mata Kuliah: ";
+								cin >> idMatKul;
+							}
+
+							int tempa = recMatKul[idMatKul-1].getID();
+							string tempb = recMatKul[idMatKul-1].getKode();
+							string tempc = recMatKul[idMatKul-1].getNama();
+							int tempd = recMatKul[idMatKul-1].getSKS();
+
+							matkul temp;
+							recMhs[idUser-1].matKulTerambil.push_back(temp);
+							recMhs[idUser-1].matKulTerambil[jumlahmatkul].setID(tempa);
+							recMhs[idUser-1].matKulTerambil[jumlahmatkul].setKode(tempb);
+							recMhs[idUser-1].matKulTerambil[jumlahmatkul].setNama(tempc);
+							recMhs[idUser-1].matKulTerambil[jumlahmatkul].setSKS(tempd);
+							jumlahmatkul++;
+
+							cout << endl << "Mata Kuliah Telah Berhasil Ditambahkan" << endl;
+							cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+							cin.ignore();
+							}	break;
+						case 4:{
+							ClearScreen();
+							while(recMhs[idUser-1].matKulTerambil.size() == 0){
+								cout << "Belum ada data mata kuliah" << endl << endl;
+								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+								cin.ignore();	cin.ignore();
+								return main();
+							}
+							cout << "LIST MATA KULIAH " << recMhs[idUser-1].getNama() << endl;
+							cout << "------------------------------------------------" << endl;
+							for(i=0; i<recMhs[idUser-1].matKulTerambil.size(); i++){
+								cout << "ID: " << recMhs[idUser-1].matKulTerambil[i].getID() << " | Kode: " << recMhs[idUser-1].matKulTerambil[i].getKode() << " | Nama: " << recMhs[idUser-1].matKulTerambil[i].getNama() << " | SKS: " << recMhs[idUser-1].matKulTerambil[i].getSKS() << endl;
+							}
+							cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
+							cin.ignore();
+							}	break;
+						case 5:{
 							ClearScreen();
 							cout << "MENU EDIT MAHASISWA" << endl;
 							cout << "-------------------" << endl;
@@ -357,14 +437,14 @@ int main(){
 								}
 							}
 						}	break;
-						case 4:{
+						case 6:{
 							recMhs.erase(recMhs.begin()+idUser-1);
 							idM--;
 							for(i=0; i<idM; i++){
 								recMhs[i].setId(i+1);
 							}
 						}	break;
-						case 5:{
+						case 7:{
 						}	break;
 						default:{
 							ClearScreen();
@@ -374,7 +454,7 @@ int main(){
 				}
 					}
 			}	break;
-			case 5:{
+			case 6:{
 				ClearScreen();
 				while(recDosen.size() == 0){
 					cout << "Belum ada data dosen" << endl << endl;
@@ -506,7 +586,7 @@ int main(){
 					}
 				}
 			}	break;
-			case 6:{
+			case 7:{
 				ClearScreen();
 				while(recTendik.size() == 0){
 					cout << "Belum ada data tendik" << endl << endl;
@@ -625,11 +705,106 @@ int main(){
 					}
 				}	break;
 			}	break;
-			case 7:{ 
+			case 8:{
+				ClearScreen();
+				while(recMatKul.size() == 0){
+					cout << "Belum ada data mata kuliah" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();	cin.ignore();
+					return main();
+					}
+				cout << "LIST MATA KULIAH" << endl;
+				cout << "----------------" << endl;
+				for(i=0; i<recMatKul.size(); i++){
+					cout << "ID: " << recMatKul[i].getID() << "| Kode: " << recMatKul[i].getKode() << " | Nama: " << recMatKul[i].getNama() << " | SKS: " << recMatKul[i].getSKS() <<endl;
+				}
+				cout << endl;
+				cout << "Masukan Kode Mata Kuliah: "; 
+				cin >> idUser;
+				ClearScreen();
+				while(idUser > recMatKul.size()){
+					cout << "Kode Mata Kuliah Tidak Ditemukan" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();		
+					cin.ignore();
+					return main();
+				}
+				cout << "DATA MATA KULIAH " << idUser << endl;
+				cout << "-----------------" << endl;
+				cout << "ID Mata Kuliah: " << idUser << endl;
+				cout << "Nama: " << recMatKul[idUser-1].getNama() << endl;
+				cout << "Kode: " << recMatKul[idUser-1].getKode() << endl;
+				cout << "SKS: " << recMatKul[idUser-1].getSKS() << endl << endl;
+				cout << "Menu: " << endl;
+				cout << "  1. Edit Data" << endl;
+				cout << "  2. Hapus Data" << endl;
+				cout << "  3. Kembali ke Menu Utama" << endl;
+				cout << "-> Silahkan memilih salah satu: ";
+				cin >> menu_list;
+				cout << endl;
+				switch (menu_list){
+					case 1:{
+						ClearScreen();
+						cout << "MENU EDIT MATA KULIAH" << endl;
+						cout << "---------------------" << endl;
+						cout << "Menu: " << endl;
+						cout << "  1. Edit Nama" << endl;
+						cout << "  2. Edit Kode" << endl;
+						cout << "  3. Edit Jumlah SKS" << endl;
+						cout << "-> Silahkan memilih salah satu: ";
+						cin >> menu_edit;
+						cout << endl;
+						switch (menu_edit){
+							case 1:{
+								cout << "Nama: " << recMatKul[idUser-1].getNama() << endl;
+								cout << "Masukkan Nama Baru: ";
+								getline(cin >> ws, nama);
+								recMatKul[idUser-1].setNama(nama);
+								cout << "Nama Telah Berhasil Diubah" << endl << endl;
+								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+								cin.ignore();	
+							}	break;
+							case 2:{
+								cout << "Kode: " << recMatKul[idUser-1].getKode() << endl;
+								cout << "Masukkan Kode Baru: ";
+								cin >> kodeMK;
+								recMatKul[idUser-1].setKode(kodeMK);
+								cout << "Kode Telah Berhasil Diubah" << endl << endl;
+								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+								cin.ignore();
+							}	break;
+							case 3:{
+								cout << "Jumlah SKS: " << recMatKul[idUser-1].getSKS() << endl;
+								cout << "Masukkan Jumlah SKS Baru: ";
+								cin >> sks;
+								recMatKul[idUser-1].setSKS(sks);
+								cout << "Jumlah SKS Telah Berhasil Diubah" << endl << endl;
+								cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+								cin.ignore();
+							}	break;
+						}
+					}	break;
+					case 2:{
+							recMatKul.erase(recMatKul.begin()+idUser-1);
+							idMK--;
+							for(i=0; i<idMK; i++){
+								recMatKul[i].setID(i+1);
+							}
+					}	break;
+					case 3:{
+					}	break;
+					default:{
+						ClearScreen();
+						cout << "Pilihan tidak ditemukan" << endl << endl << "Tekan Enter Untuk Kembali ke Menu Utama";
+						cin.ignore();
+					}
+				}	break;
+			}	break;
+			case 9:{ 
 				menu_user=0;
 				return main();
 			}	break;
-			case 8:{
+			case 10:{
 				ClearScreen();
 				return 0;
 			}	break;

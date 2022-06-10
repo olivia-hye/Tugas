@@ -10,3 +10,6 @@ sim: $(SOURCES:.cpp=.o)
 
 clean:
 	rm src/*.o
+	
+cleanwin:
+	del src\*.o
