@@ -853,8 +853,9 @@ int main(){
 		cout << "Jumlah SKS Lulus: " << recMhs[idM-1].getSKSLulus() << endl << endl;
 		cout << "Menu: " << endl;
 		cout << "  1. Cek IP Semester & IP Kumulatif" << endl;
-		cout << "  2. Logout" << endl;
-		cout << "  3. Keluar Program" << endl;
+		cout << "  2. Cek Mata Kuliah" << endl;
+		cout << "  3. Logout" << endl;
+		cout << "  4. Keluar Program" << endl;
 		cout << "-> Silahkan memilih salah satu: ";
 		cin >> menu_terpilih;
 		switch (menu_terpilih){
@@ -882,11 +883,27 @@ int main(){
 						cin.ignore(); cin.ignore();
 				}	break;
 			case 2:{
+				ClearScreen();
+				while(recMhs[idM-1].matKulTerambil.size() == 0){
+					cout << "Belum ada data mata kuliah" << endl << endl;
+					cout << "Tekan Enter Untuk Kembali ke Menu Utama...";
+					cin.ignore();	cin.ignore();
+					return main();
+					}
+				cout << "LIST MATA KULIAH " << recMhs[idM-1].getNama() << endl;
+				cout << "------------------------------------------------" << endl;
+				for(i=0; i<recMhs[idM-1].matKulTerambil.size(); i++){
+					cout << "ID: " << recMhs[idM-1].matKulTerambil[i].getID() << " | Kode: " << recMhs[idM-1].matKulTerambil[i].getKode() << " | Nama: " << recMhs[idM-1].matKulTerambil[i].getNama() << " | SKS: " << recMhs[idM-1].matKulTerambil[i].getSKS() << endl;
+					}
+				cout << endl << "Tekan Enter Untuk Kembali ke Menu Utama...";
+				cin.ignore();
+				}	break;
+			case 3:{
 				menu_user = 0;
 				isLoggedIn = false;
 				return main();
 				}	break;
-			case 3:{
+			case 4:{
 				ClearScreen();
 				return 0;
 				}	break;
