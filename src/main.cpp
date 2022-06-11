@@ -39,8 +39,8 @@ int main(){
 		cout << "-----------------------------" << endl;
 
 		//Output current date using ctime library
-    	time_t ttime = time(0);
-    	tm *local_time = localtime(&ttime);
+		time_t ttime = time(0);
+		tm *local_time = localtime(&ttime);
 		cout << "Tanggal: " << local_time->tm_mday << "/" << 1 + local_time->tm_mon << "/" << 1900 + local_time->tm_year << endl;
 
 		cout << "User List: Admin, Mahasiswa, Dosen";
